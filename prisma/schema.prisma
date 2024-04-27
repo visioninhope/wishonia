@@ -121,6 +121,7 @@ model User {
   proposalComparisons             ProposalComparison[]
   wishingWellPairAllocations      WishingWellPairAllocation[]
   genieDAOFeedback                GenieDAOFeedback[]
+  wishingWellCostItems            WishingWellCostItem[]
 
   @@map("users")
 }
@@ -274,8 +275,27 @@ model WishingWell {
   user                     User                      @relation(fields: [userId], references: [id])
   wishingWellContributions WishingWellContribution[]
   proposals                WishFulfillmentProposal[]
+  costItems                WishingWellCostItem[]
 
   @@map("wishing_wells")
+}
+
+model WishingWellCostItem {
+  id            String      @id @default(cuid())
+  wishingWellId String      @map("wishing_well_id")
+  userId        String      @map("user_id")
+  name          String
+  description   String?
+  amount        Float
+  imageUrl      String?     @map("image_url")
+  evidenceUrl   String?     @map("evidence_url")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  wishingWell   WishingWell @relation(fields: [wishingWellId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+
+  @@unique([userId, wishingWellId])
+  @@map("wishing_well_cost_items")
 }
 
 model WishingWellContribution {

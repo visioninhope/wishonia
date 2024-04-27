@@ -21,12 +21,12 @@ import {
 import {
   FaBomb,
   FaBookMedical,
-  FaDisease,
+  FaDisease, FaLightbulb,
   FaPeace,
-  FaRegStar,
+  FaRegStar, FaRegThumbsUp, FaRocket,
   FaSkull,
   FaSort,
-  FaUserAlt,
+  FaUserAlt, FaUsers,
   FaVoteYea
 } from "react-icons/fa"
 import { ImSpinner8, ImStatsBars } from "react-icons/im"
@@ -88,6 +88,10 @@ const icons = {
   mixer: RxMixerHorizontal,
   check: BsCheck2,
   star: FaRegStar,
+  lightbulb: FaLightbulb,
+  users: FaUsers,
+  rocket: FaRocket,
+  thumbsUp: FaRegThumbsUp
 }
 
 export const Icons: IconsType = icons

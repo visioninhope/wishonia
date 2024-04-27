@@ -7,7 +7,7 @@ import HeadingText from "@/components/heading-text"
 import { Icons } from "@/components/icons"
 
 export default async function OpenSource() {
-  const { stargazers_count: stars } = await fetch(
+  let { stargazers_count: stars } = await fetch(
     "https://api.github.com/repos/wishonia/wishonia",
     {
       next: { revalidate: 60 },
@@ -15,6 +15,10 @@ export default async function OpenSource() {
   )
     .then((res) => res.json())
     .catch((e) => console.error(e))
+
+  if(stars < 100) {
+    stars = "Star"
+  }
 
   return (
     <section className="container py-12 lg:py-20">
